@@ -23,7 +23,7 @@ Link: [MIT License](https://opensource.org/licenses/MIT)
 
 ## Description
 
-This is a simplle Business Management system that allows the user to enter customer data, manage item inventory, and create invoices and send them to the customers for billing.
+This is a simple Business Management system that allows the user to enter customer data, manage item inventory, and create invoices and send them to the customers for billing.
      
 ## Installation
 
