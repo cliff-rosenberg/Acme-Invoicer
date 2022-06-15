@@ -1,0 +1,32 @@
+{
+  "name": "acme-invoicer",
+  "version": "1.0.0",
+  "description": "![/assets/logo-transparent.png](assets/logo-transparent.png)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cliff-rosenberg/Acme-Invoicer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cliff-rosenberg/Acme-Invoicer/issues"
+  },
+  "homepage": "https://github.com/cliff-rosenberg/Acme-Invoicer#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "connect-session-sequelize": "^7.1.4",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6",
+    "express-session": "^1.17.3",
+    "mysql2": "^2.3.3",
+    "nodemailer": "^6.7.5",
+    "sequelize": "^6.20.1"
+  }
+}
