@@ -1,6 +1,6 @@
 # Acme Invoicer
 
-![/assets/logo-transparent.png](assets/logo-transparent.png)
+![project-logo](assets/transparent_logo_sm.png)
 
 ## Table of Contents-
 - [Acme Invoicer](#acme-invoicer)
