@@ -1,34 +1,34 @@
-'use strict';
+// import models
+const Customer = require('./Customer');
+const Inventory = require('./Inventory');
+const Invoice = require('./Invoice');
+const Invoice_details = require('./Invoice_details');
 
-const Sequelize = require('sequelize');
-const CustomerModel = require('./models/customer.js');
-const InventoryModel = require('./models/inventory.js');
-const InvoiceModel = require('./models/invoice.js');
+// associations made here
 
-const sequelize = new Sequelize({
-  dialect: 'mysql',
-  store: ':memory',
-  define: {
-    timestamps: false
-  }
+//Customer has many Invoices
+// but only one Customer per Invoice
+Invoice.belongsTo(Customer, {
+  foreignKey: 'customer_id'
 });
 
-const Customer = CustomerModel(sequelize, Sequelize);
-const Inventory = InventoryModel(sequelize, Sequelize);
-const Invoice = InvoiceModel(sequelize, Sequelize);
-
-Customer.hasMany(Invoices, {
-  foreignKey: 'customersId'
+// Customer has many Invoices
+Customer.hasMany(Invoice, {
+  foreignKey: 'customer_id'
 });
 
-Invoice.belongsTo(Customers, {
-  foreignKey: 'invoicesId'
+// Invoice has many line items
+Invoice.hasMany(Invoice_details, {
+  foreignKey: 'invoice_id'
+});
+
+Inventory.hasMany(Invoice_details, {
+  foreignKey: 'inventory_id'
 });
 
 module.exports = {
-  sequelize,
-  Sequelize,
   Customer,
   Inventory,
-  Invoice
-}
+  Invoice,
+  Invoice_details
+};

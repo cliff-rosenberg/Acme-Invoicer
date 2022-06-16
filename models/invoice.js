@@ -1,28 +1,30 @@
-'use strict';
+const { Model, DataTypes } = require('sequelize');
 
-module.exports = (sequelize, DataTypes) => {
-  const Invoice = sequelize.define('invoice', {
+const sequelize = require('../config/connection');
+const Customer = require('./customer');
+
+class Invoice extends Model {}
+
+Invoice.init(
+    {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
+      autoIncrement: true,
       allowNull: false,
       unique: true
     },
-    customerId: {
-      type: DataTypes.INTEGER
-    },
-    itemId: {
-      type: DataTypes.INTEGER
-    },
-    quantity: {
-      type: DataTypes.DECIMAL,
-      allowNull: false
-    },
-    price: {
-      type: DataTypes.DECIMAL,
-      allowNull: false
+    invoice_date: {
+      type: DataTypes.DATEONLY
     }
-  }, { tableName: 'invoice' });
+    }, 
+    { 
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'invoice' 
+    }
+  );
 
-  return Invoice;
-};
+  module.exports = Invoice;

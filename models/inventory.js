@@ -1,30 +1,42 @@
-'use strict';
+const { Model, DataTypes } = require('sequelize');
 
-module.exports = (sequelize, DataTypes) => {
-  const Inventory = sequelize.define('inventory', {
+const sequelize = require('../config/connection');
+
+class Inventory extends Model {}
+
+Inventory.init(
+  {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
+      autoIncrement: true,
       allowNull: false,
       unique: true
     },
-    itemName: {
+    item_name: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    inventoryQuan: {
-      type: DataTypes.DECIMAL,
+    inventory_quan: {
+      type: DataTypes.DECIMAL(10,2),
       allowNull: false
     },
     cost: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.DECIMAL(10,2),
       allowNull: false
     },
     price: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.DECIMAL(10,2),
       allowNull: false
     }
-  }, { tableName: 'inventory' });
+  },
+  {
+  sequelize,
+  timestamps: false,
+  freezeTableName: true,
+  underscored: true,
+  modelName: 'inventory', 
+  }
+);
 
-  return Inventory;
-};
+  module.exports = Inventory;
