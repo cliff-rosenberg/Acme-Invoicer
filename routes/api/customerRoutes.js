@@ -1,8 +1,16 @@
+const { Customer } = require('../../models');
+
 const router = require('express').Router();
 
-
+// find all customers
 router.get('/', async (req, res) => {
-    // find all customers
+    try {
+        const customerData = await Customer.findall;
+            res.status(200).json(customerData);
+        
+    } catch (err) {
+        res.status(400).json(err);
+    }
    
   });
   
