@@ -1,28 +1,60 @@
+const { Customer } = require('../../models');
+
 const router = require('express').Router();
-const nodemailer = require("nodemailer");
 
-let testAccount = await nodemailer.createTestAccount();
-
-let transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
-    port: 587,
-    secure: false, // true for 465, false for other ports
-    auth: {
-      user: testAccount.user, // generated ethereal user
-      pass: testAccount.pass, // generated ethereal password
-    },
+// find all customers
+router.get('/', async (req, res) => {
+    try {
+        const customerData = await Customer.findAll();
+            res.status(200).json(customerData);
+        
+    } catch (err) {
+        res.status(400).json(err);
+    }
+   
+  });
+  
+  // find one customer by its `id` value
+  router.get('/:id', async (req, res) => {
+    console.log(req.params.id)
+    try {
+        const customerData = await Customer.findByPk(req.params.id);
+        if (!customerData) {
+            res.status(404).json({ message: 'no customer with this id' });
+            return;
+        }
+        res.status(200).json(customerData);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+    
+  });
+  
+  // create a new customer
+  router.post('/', async (req, res) => {
+    try {
+        const customerData = await Customer.create(req.body);
+        res.status(200).json(customerData);
+    } catch (err) {
+        res.status(400).json(err);
+    }
+  });
+  
+  // update a customer by its `id` value
+  router.put('/:id', async (req, res) => {
+    try {
+        const customerData = await Customer.update(req.body, {
+            where: req.params.id
+        });
+        if (!customerData[0]) {
+            res.status(404).json({ message: 'no customer with this id' });
+            return;
+        }
+        res.status(200).json(customerData);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+    
   });
 
-
-router.get("/:id", (req, res) => {
-    console.log(req.params.id)
-    let info = await transporter.sendMail({
-        from: '"Fred Foo 👻" <foo@example.com>', // sender address
-        to: "bar@example.com, baz@example.com", // list of receivers
-        subject: "Hello ✔", // Subject line
-        text: "Hello world?", // plain text body
-        html: "<b>Hello world?</b>", // html body
-      });
-})
-
-module.exports = router;
+  module.exports = router;

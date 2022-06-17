@@ -2,6 +2,7 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const path = require('path');
 const hbs = exphbs.create({});
+const routes = require('./controllers');
 
 
 // Sets up the Express App
@@ -14,6 +15,8 @@ app.set('view engine', 'handlebars');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(require('./controllers/homeRoutes'));
+
+app.use(routes);
 
 // Starts the server to begin listening
 app.listen(PORT, () => {
