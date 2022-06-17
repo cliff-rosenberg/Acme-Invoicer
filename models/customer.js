@@ -9,7 +9,7 @@ class Customer extends Model {}
 Customer.init(
   {
     //define columns
-    id: {
+    customer_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
