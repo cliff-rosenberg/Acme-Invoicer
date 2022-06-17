@@ -7,7 +7,7 @@ class Invoice extends Model {}
 
 Invoice.init(
     {
-    id: {
+    invoice_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
