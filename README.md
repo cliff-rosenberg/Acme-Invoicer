@@ -27,19 +27,23 @@ This is a simple Business Management system that allows the user to enter custom
      
 ## Installation
 
-TODO
+Javascript, Mysql, Html, Apis
 
 ## Screenshots
 
 TODO
 
 ## Usage
+When running the code, you should be able to send invoices to customers
+Customers should be able to route to their invoices
+Invoices should send to customers email for them to pay their bill
+Customers will also be able to manage what they order and keep track of their inventory.
+The drop down menu will give you the option to look at your invoice, create a new order, as well list the items we have on stock.
 
-TODO
 
 ## Credits
 
-TODO
+Cliff Rosenburg, Daniel Leake, Matt Gonzales, Leo Morales
 
 ## Contributing
 
@@ -51,4 +55,12 @@ TODO
 
 ## Additional Info
 
-TODO
+Customer Functions:
+-Adding customers to database
+-Looking up customers from database
+ 	Database for Customers:
+	-Business Name
+	-Contact Name
+	-Address
+	-Phone Number
+	-E-Mail
