@@ -6,7 +6,7 @@ class Inventory extends Model {}
 
 Inventory.init(
   {
-    id: {
+    inventory_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
