@@ -3,6 +3,7 @@ const { User } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', withAuth, async (req, res) => {
+    console.log('base route rendered');
     try {
         const userData = await User.findall({
             attributes: { exclude: ['password']},
