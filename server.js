@@ -3,23 +3,36 @@ const express = require('express');
 // Import express-session
 const session = require('express-session');
 const exphbs = require('express-handlebars');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-const hbs = exphbs.create({});
+
 const routes = require('./controllers');
+const sequelize = require('./config/connection');
 //const helpers = require('./utils/helpers');
 
 // Sets up the Express App
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Set up sessions
+// Set up sessions with cookies
 const sess = {
   secret: 'Super secret secret',
+  cookie: {
+    // Stored in milliseconds 
+    // (86400000 ms === 1 day)
+    // (3600000 ms === 1 hour)
+    maxAge: 3600000,
+  },
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize,
+  }),
 };
 
-app.use(session(sess)); 
+app.use(session(sess));
+
+const hbs = exphbs.create({});
 
 // Set Handlebars as the default template engine.
 app.engine('handlebars', hbs.engine);
@@ -33,7 +46,10 @@ app.use(require('./controllers/homeRoutes'));
 
 app.use(routes);
 
-// Starts the server to begin listening
-app.listen(PORT, () => {
-  console.log('Server listening on: http://localhost:' + PORT);
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () =>
+    console.log(
+      `\nServer running on port ${PORT}. Visit http://localhost:${PORT} and create an account!`
+    )
+  );
 });

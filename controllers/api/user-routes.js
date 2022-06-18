@@ -1,6 +1,5 @@
-const { User } = require('../../models');
-
 const router = require('express').Router();
+const { User } = require('../../models');
 
 // CREATE new user
 router.post('/', async (req, res) => {
@@ -47,7 +46,7 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect email or password. Please try again!' });
       return;
     }
-
+    console.log('logging in...');
     // Once the user successfully logs in, set up the sessions variable 'loggedIn'
     req.session.save(() => {
       req.session.loggedIn = true;
