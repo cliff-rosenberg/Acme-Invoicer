@@ -1,0 +1,20 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each customerData as |customer| }}
+    <tr>
+      <th scope="row">{{customer.customer_id}}</th>
+      <td>{{customer.company_name}}</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    {{/each}}
+    </tbody>
+</table>

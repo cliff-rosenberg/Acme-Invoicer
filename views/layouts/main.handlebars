@@ -19,7 +19,7 @@
   }
 </style>
 </head>
-
+  <div class="page-header">
   <div class="flex-column justify-space-around">
     <header class="display-flex justify-space-between align-center p-2">
       <nav>
@@ -27,7 +27,7 @@
         {{#if logged_in}}
         <button class="no-button" id="logout">logout</button>
         {{else}}
-        <a href="/login">login</a>
+        <a href="/login">click here to login</a>
         {{/if}}
       </nav>
     </header>
@@ -36,7 +36,7 @@
       {{{ body }}}
     </main>
   </div>
-
+  </div>
   <!-- Render script for logged in users only -->
   {{#if logged_in}}
   <script src="/js/logout.js"></script>
