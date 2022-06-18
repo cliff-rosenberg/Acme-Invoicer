@@ -6,8 +6,11 @@ const router = require('express').Router();
 router.get('/', async (req, res) => {
     try {
         const customerData = await Customer.findAll();
-            res.status(200).json(customerData);
-        
+            //res.status(200).json(customerData);
+            res.render('customers', {
+                customerData,
+                logged_in: req.session.loggedIn,
+            });
     } catch (err) {
         res.status(400).json(err);
     }
