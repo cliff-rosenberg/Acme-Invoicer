@@ -1,4 +1,5 @@
 // import models
+const User = require('./User');
 const Customer = require('./Customer');
 const Inventory = require('./Inventory');
 const Invoice = require('./Invoice');
@@ -27,6 +28,7 @@ Inventory.hasMany(Invoice_details, {
 });
 
 module.exports = {
+  User,
   Customer,
   Inventory,
   Invoice,
