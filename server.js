@@ -32,8 +32,8 @@ const sess = {
 
 app.use(session(sess));
 
+// more Handlebars setup
 const hbs = exphbs.create({});
-
 // Set Handlebars as the default template engine.
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
