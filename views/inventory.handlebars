@@ -1,0 +1,22 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Inventory ID</th>
+      <th scope="col">Item Name</th>
+      <th scope="col">Inventory QTY</th>
+      <th scope="col">Cost</th>
+      <th scope="col">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each inventoryData as |Inventory| }}
+    <tr>
+      <th scope="row">{{Inventory.inventory_id}}</th>
+      <td>{{Inventory.item_name}}</td>
+      <td>{{Inventory.inventory_quan}}</td>
+      <td>{{Inventory.cost}}</td>
+      <td>{{Inventory.price}}</td>
+    </tr>
+    {{/each}}
+    </tbody>
+</table>
