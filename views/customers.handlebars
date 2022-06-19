@@ -1,10 +1,12 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Customer ID</th>
+      <th scope="col">Company Name</th>
+      <th scope="col">Contact Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">Phone Number</th>
+      <th scope="col">Email Address</th>
     </tr>
   </thead>
   <tbody>
@@ -12,8 +14,10 @@
     <tr>
       <th scope="row">{{customer.customer_id}}</th>
       <td>{{customer.company_name}}</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <td>{{customer.contact_name}}</td>
+      <td>{{customer.address}}</td>
+      <td>{{customer.phone_number}}</td>
+      <td>{{customer.email_address}}</td>
     </tr>
     {{/each}}
     </tbody>
