@@ -1,3 +1,5 @@
+require('dotenv').config({ path: __dirname + `/../.env` });
+
 const seedCustomer = require('./customer-seed');
 const seedInventory = require('./inventory-seed');
 const seedInvoice = require('./invoice-seed');
