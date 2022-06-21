@@ -4,19 +4,11 @@ const {Customer} = require('../models')
 const {Invoice} = require('../models')
 const withAuth = require('../utils/auth');
 
+// this is the base route when the "homepage.handlebars" loads
 router.get('/', withAuth, async (req, res) => {
     console.log('base route rendered');
-    console.log(User);
     try {
-        const userData = await User.findAll({
-            attributes: { exclude: ['password']},
-            order: [['username', 'ASC']],
-        });
-        console.log(userData);
-        const users = userData.map((project) => project.get({ plain: true }));
-        console.log(users);
         res.render('homepage', {
-            users,
             logged_in: req.session.loggedIn,
         });
     } catch (err) {
@@ -24,6 +16,8 @@ router.get('/', withAuth, async (req, res) => {
     }
 });
 
+// this route is for emailing the invoice to customer
+// returns the Customer data
 router.get('/customers', withAuth, async (req, res) => {
     try {
         const customerData = await Customer.findAll({
@@ -39,14 +33,18 @@ router.get('/customers', withAuth, async (req, res) => {
     }
 });
 
+// this route is for emailing the invoice to customer
+// returns the Invoice data
 router.get('/invoice', withAuth, async (req, res) => {
     try {
         const invoiceData = await Invoice.findAll({
+            include: Customer,
             order: [['invoice_date', 'ASC']],
         });
-        const invoices = invoiceData.map((project) => project.get({ plain: true }));
+        const rendered = invoiceData.map((data) => data.get({ plain: true }));
+        console.log(rendered);
         res.render('invoice', {
-            invoices,
+            invoices: rendered,
             logged_in: req.session.loggedIn,
         });
     } catch (err) {
@@ -54,6 +52,8 @@ router.get('/invoice', withAuth, async (req, res) => {
     }
 });
 
+// this route is for emailing the invoice to customer
+// returns the Inventory data for the invoice
 router.get('/inventory', withAuth, async (req, res) => {
     try {
         const invoiceData = await Inventory.findAll({
