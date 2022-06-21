@@ -1,5 +1,7 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { User, Inventory } = require('../models');
+const {Customer} = require('../models')
+const {Invoice} = require('../models')
 const withAuth = require('../utils/auth');
 
 router.get('/', withAuth, async (req, res) => {
@@ -15,6 +17,51 @@ router.get('/', withAuth, async (req, res) => {
         console.log(users);
         res.render('homepage', {
             users,
+            logged_in: req.session.loggedIn,
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.get('/customers', withAuth, async (req, res) => {
+    try {
+        const customerData = await Customer.findAll({
+            order: [['company_name', 'ASC']],
+        });
+        const customers = customerData.map((project) => project.get({ plain: true }));
+        res.render('customers', {
+            customers,
+            logged_in: req.session.loggedIn,
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.get('/invoice', withAuth, async (req, res) => {
+    try {
+        const invoiceData = await Invoice.findAll({
+            order: [['invoice_date', 'ASC']],
+        });
+        const invoices = invoiceData.map((project) => project.get({ plain: true }));
+        res.render('invoice', {
+            invoices,
+            logged_in: req.session.loggedIn,
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.get('/inventory', withAuth, async (req, res) => {
+    try {
+        const invoiceData = await Inventory.findAll({
+            order: [['item_name', 'ASC']],
+        });
+        const inventory = invoiceData.map((project) => project.get({ plain: true }));
+        res.render('inventory', {
+            inventory,
             logged_in: req.session.loggedIn,
         });
     } catch (err) {
