@@ -8,11 +8,12 @@ const { Inventory, Invoice_details } = require('../../models');
 router.get('/', async (req, res) => {
   try {
     // this will return all Invoice data in table
-    const invoiceData = await Invoice.findAll();
+    const queryData = await Invoice.findAll();
     //res.status(200).json(invoiceData);
-    let rendered = invoiceData.map((data) => data.get({ plain: true }));
+    // const invoiceData = queryData.map((data) => data.get({ plain: true }));
+    let rendered = queryData.map((data) => data.get({ plain: true }));
             console.log(rendered);
-            res.render('customers', {
+            res.render('invoice', {
                 rendered,
                 logged_in: req.session.loggedIn,
             });
