@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     //res.status(200).json(invoiceData);
     let rendered = queryData.map((data) => data.get({ plain: true }));
             console.log(rendered);
-            res.render('invoice', {
+            res.render('invoices', {
                 rendered,
                 logged_in: req.session.loggedIn,
             });
