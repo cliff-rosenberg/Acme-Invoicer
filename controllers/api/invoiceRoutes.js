@@ -10,7 +10,6 @@ router.get('/', async (req, res) => {
     // this will return all Invoice data in table
     const queryData = await Invoice.findAll();
     //res.status(200).json(invoiceData);
-    // const invoiceData = queryData.map((data) => data.get({ plain: true }));
     let rendered = queryData.map((data) => data.get({ plain: true }));
             console.log(rendered);
             res.render('invoice', {
@@ -56,7 +55,10 @@ router.get('/details/:id', async (req, res) => {
         res.status(404).json({ message: 'no invoice found with this id' });
         return;
     }
-    res.status(200).json(invoiceData);
+    //res.status(200).json(invoiceData);
+    let rendered = invoiceData.map((data) => data.get({ plain: true }));
+    console.log(rendered);
+    
   } catch (err) {
     res.status(500).json(err);
   }

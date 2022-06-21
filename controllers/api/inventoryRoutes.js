@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
   try {
       const inventoryData = await Inventory.findAll();
       //res.status(200).json(inventoryData);
-      let rendered = inventoryData.map((data) => data.get({ plain: true }));
+      const rendered = inventoryData.map((data) => data.get({ plain: true }));
       console.log(rendered);
       res.render('inventory', {
         rendered,
