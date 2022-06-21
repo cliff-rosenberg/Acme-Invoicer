@@ -6,11 +6,19 @@
     </tr>
   </thead>
   <tbody>
-    {{#each invoiceData as |Invoice| }}
+    {{#each invoices as |Invoice| }}
     <tr>
       <th scope="row">{{Invoice.invoice_id}}</th>
       <td>{{Invoice.invoice_date}}</td>
+      <td><button class="invoice-btn" data-invoiceid="{{Invoice.invoice_id}}">Generate Invoice</button></td>
     </tr>
     {{/each}}
     </tbody>
 </table>
+
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+
+<script src="/js/invoice.js"></script>
