@@ -1,15 +1,7 @@
-{{#each users as |user| }}
-<div class="flex-column mb-5">
-  <div class="col-md-6">
-    <h3>Current User:</h3>
-    <p>{{user.username}}</p>
-  </div>
-</div>
-{{/each}}
+{{#if logged_in}}
+<p class="fw-lighter">Security OK</p>
+{{/if}}
 
-<nav class="nav flex-column">
-  <a id="home" class="nav-link active" href="#">Home</a>
-  <a id="show-customer" class="nav-link" href="/api/customer">Show Customers</a>
-  <a id="show-inventory" class="nav-link" href="/api/inventory">Show Inventory</a>
-  <a id="show-invoices" class="nav-link" href="/api/invoice">Show Invoices</a>
-</nav>
+<div class="text-center">
+<img src="/assets/grayscale_transparent_sm.png" class="img-fluid" alt="Acme Invoicer Logo">
+</div>

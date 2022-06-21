@@ -8,12 +8,14 @@ const { Inventory, Invoice_details } = require('../../models');
 router.get('/', async (req, res) => {
   try {
     // this will return all Invoice data in table
-    const queryData = await Invoice.findAll();
+    const queryData = await Invoice.findAll({
+      include: Customer,
+    });
     //res.status(200).json(invoiceData);
-    // const invoiceData = queryData.map((data) => data.get({ plain: true }));
+    console.log(queryData);
     let rendered = queryData.map((data) => data.get({ plain: true }));
-            console.log(rendered);
-            res.render('invoice', {
+    console.log(rendered);
+            res.render('invoices', {
                 rendered,
                 logged_in: req.session.loggedIn,
             });
@@ -56,7 +58,10 @@ router.get('/details/:id', async (req, res) => {
         res.status(404).json({ message: 'no invoice found with this id' });
         return;
     }
-    res.status(200).json(invoiceData);
+    //res.status(200).json(invoiceData);
+    let rendered = invoiceData.map((data) => data.get({ plain: true }));
+    console.log(rendered);
+    
   } catch (err) {
     res.status(500).json(err);
   }

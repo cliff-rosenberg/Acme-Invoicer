@@ -1,25 +1,28 @@
-<table class="table table-striped">
+<div class="ms-5">
+<table style="width: auto;" class="table table-bordered table-striped table-condensed">
+  <caption>All current Customers</caption>
   <thead>
     <tr>
       <th scope="col">Customer ID</th>
-      <th scope="col">Company Name</th>
+      <th scope="col" class="text-center">Company Name</th>
       <th scope="col">Contact Name</th>
-      <th scope="col">Address</th>
+      <th scope="col" class="text-center">Address</th>
       <th scope="col">Phone Number</th>
-      <th scope="col">Email Address</th>
+      <th scope="col" class="text-center">Email Address</th>
     </tr>
   </thead>
   <tbody>
 
     {{#each rendered as |customer| }}
     <tr>
-      <th scope="row">{{customer.customer_id}}</th>
-      <td>{{customer.company_name}}</td>
-      <td>{{customer.contact_name}}</td>
-      <td>{{customer.address}}</td>
-      <td>{{customer.phone_number}}</td>
-      <td>{{customer.email_address}}</td>
+      <th scope="row" class="text-center">{{customer.customer_id}}</th>
+      <td class="text-center">{{customer.company_name}}</td>
+      <td class="text-center">{{customer.contact_name}}</td>
+      <td class="text-center">{{customer.address}}</td>
+      <td class="text-center">{{customer.phone_number}}</td>
+      <td class="text-center">{{customer.email_address}}</td>
     </tr>
     {{/each}}
     </tbody>
 </table>
+</div>

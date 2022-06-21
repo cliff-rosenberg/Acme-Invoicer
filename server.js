@@ -40,15 +40,17 @@ const hbs = exphbs.create({});
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
+// set up Express
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // sets 'static' routes for Express here
 app.use(express.static(path.join(__dirname, 'public')));
 
+// more route setup here
 app.use(require('./controllers/homeRoutes'));
-
 app.use(routes);
 
+// start up the application and open the PORT listener
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () =>
     console.log(
