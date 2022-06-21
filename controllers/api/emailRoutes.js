@@ -23,14 +23,19 @@ let transporter;
 
 function createInvoiceEmailTable(invoiceLineItems) {
     let itemRows = '';
+    // let quantity = Number(invoiceRow.quantity);
+    // let extendedPrice = Number(invoiceRow.extended_price);
+    let totalPrice = 0;
+    // totalPrice = quantity * extendedPrice;
 
     invoiceLineItems.forEach((invoiceRow) => {
         itemRows += `
                             <tr>
                                 <td>${invoiceRow.invoice_date}</td>
                                 <td>${invoiceRow.item_name}</td>
-                                <td>${invoiceRow.price}</td>
-                                <td>${invoiceRow.email_address}</td>
+                                <td>${invoiceRow.quantity}</td>
+                                <td>${invoiceRow.extended_price}</td>
+                                <td>${totalPrice}</td>
                             </tr>`;
     })
 
@@ -39,8 +44,9 @@ function createInvoiceEmailTable(invoiceLineItems) {
         <tr>
             <th>Invoice date</th>
             <th>Item Name</th>
+            <th>Quantity</th>
             <th>Price</th>
-            <th>Email Address</th>
+            <th>Total</th>
         </tr>
         ${itemRows}
     </table>`;
