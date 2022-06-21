@@ -27,7 +27,13 @@ router.get('/', async (req, res) => {
             res.status(404).json({ message: 'no product with this id' });
             return;
         }
-        res.status(200).json(inventoryData);
+        //res.status(200).json(inventoryData);
+        const rendered = inventoryData.map((data) => data.get({ plain: true }));
+        console.log(rendered);
+        res.render('inventory', {
+            rendered,
+            logged_in: req.session.loggedIn,
+        });
     } catch (err) {
         res.status(500).json(err);
     }
@@ -36,18 +42,19 @@ router.get('/', async (req, res) => {
   
   // create a new product
   router.post('/', async (req, res) => {
+    console.log(req.body);
     try {
         if (!req.body.item_name) {
             res.render('error', {
                 errMsg: 'Please enter an item name',
+                url: '/api/forms/inventoryform',
                 logged_in: req.session.loggedIn,
                 });
         } else {
-        console.log(req.body);
-        const body = req.body
+        const body = req.body;
         const inventoryData = await Inventory.create(body);
         res.status(200).json(inventoryData);
-        }
+        };
     } catch (err) {
         res.status(400).json(err);
     }

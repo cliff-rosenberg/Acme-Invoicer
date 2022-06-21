@@ -1,26 +1,27 @@
 {{!-- This is the form for inputting new Customer data --}}
 <div class="container w-50 p-3 my-3 border border-dark rounded-1">
-<form class="form-outline">
+<form class="form-outline" method="POST" action="/api/customer">
     <div class="row mb-3">
-    <label for="company-name" class="form-label">Company Name</label>
-    <input type="text" class="form-control" id="company-name" placeholder="Company">
+    <label for="company" class="form-label">Company Name</label>
+    <input type="text" id="company" class="form-control" name="company_name" placeholder="Company">
     </div>
     <div class="row mb-3">
-    <label for="contact-name" class="form-label">Contact Name</label>
-    <input type="text" class="form-control" id="contact-name" placeholder="Contact">
+    <label for="contact" class="form-label">Contact Name</label>
+    <input type="text" id="contact" class="form-control" name="contact_name" placeholder="Contact">
     </div>
     <div class="row mb-3">
-    <label for="customer-address" class="form-label">Customer Address</label>
-    <input type="text" class="form-control" id="customer-address" placeholder="Address">
+    <label for="address" class="form-label">Customer Address</label>
+    <input type="text" id="address" class="form-control" name="address" placeholder="Address">
     </div>
     <div class="row mb-3">
-    <label for="customer-phone" class="form-label">Phone #</label>
-    <input type="tel" class="form-control" id="custome-phone" placeholder="xxx-xxx-xxxx">
+    <label for="phone" class="form-label">Phone #</label>
+    <input type="tel" id="phone" class="form-control" name="phone_number" placeholder="xxx-xxx-xxxx">
     </div>
     <div class="row mb-3">
-    <label for="customer-email" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="customer-email" placeholder="name@example.com">
+    <label for="email" class="form-label">Email address</label>
+    <input type="email" id="email" class="form-control" name="email_address" placeholder="name@example.com">
     </div>
-    <button type="button" class="btn btn-primary">Save</button>
+    <input class="col-md-1 btn btn-primary" type="submit" value="Save">
+    <input class="col-md-2 ms-2 btn btn-secondary" type="button" value="Clear Form" onClick="window.location.reload(true)">
 </form>
 </div>
