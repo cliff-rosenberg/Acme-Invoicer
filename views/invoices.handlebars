@@ -1,16 +1,24 @@
-<table class="table">
+{{!-- This displays all existing Invoices in the database in a formatted table --}}
+<div class="ms-5">
+<table style="width: auto;" class="table table-bordered table-striped table-condensed">
+  <caption>All current Invoices</caption>
   <thead>
     <tr>
-      <th scope="col">Invoice ID</th>
-      <th scope="col">Invoice Date</th>
+      <th scope="col" class="text-center">Invoice ID</th>
+      <th scope="col" class="text-center">Invoice Date</th>
+      <th scope="col"class="text-center">Customer Name</th>
+      <th scope="col" class="text-center">Customer ID</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="table-group-divider">
     {{#each rendered as |Invoice| }}
     <tr>
-      <th scope="row">{{Invoice.customer_id}}</th>
+      <th scope="row" class="text-center">{{Invoice.invoice_id}}</th>
       <td>{{Invoice.invoice_date}}</td>
+      <td>{{Invoice.customer.company_name}}</td>
+      <td class="text-center">{{Invoice.customer_id}}</td>
     </tr>
     {{/each}}
     </tbody>
 </table>
+</div>
