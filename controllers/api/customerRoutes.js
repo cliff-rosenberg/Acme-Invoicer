@@ -7,7 +7,8 @@ router.get('/', async (req, res) => {
     try {
         const customerData = await Customer.findAll();
             //res.status(200).json(customerData);
-            let rendered = customerData.map((data) => data.get({ plain: true }));
+            // serialize the Sequelize query return
+            const rendered = customerData.map((data) => data.get({ plain: true }));
             console.log(rendered);
             res.render('customers', {
                 rendered,
@@ -16,8 +17,7 @@ router.get('/', async (req, res) => {
     } catch (err) {
         res.status(400).json(err);
     }
-   
-  });
+});
   
   // find one customer by its `id` value
   router.get('/:id', async (req, res) => {
@@ -28,11 +28,16 @@ router.get('/', async (req, res) => {
             res.status(404).json({ message: 'no customer with this id' });
             return;
         }
-        res.status(200).json(customerData);
+        //res.status(200).json(customerData);
+        const rendered = customerData.map((data) => data.get({ plain: true }));
+            console.log(rendered);
+            res.render('customers', {
+                rendered,
+                logged_in: req.session.loggedIn,
+            });
     } catch (err) {
         res.status(500).json(err);
     }
-    
   });
   
   // create a new customer
