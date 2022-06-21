@@ -9,7 +9,13 @@ router.get('/', async (req, res) => {
   try {
     // this will return all Invoice data in table
     const invoiceData = await Invoice.findAll();
-    res.status(200).json(invoiceData);  
+    //res.status(200).json(invoiceData);
+    let rendered = invoiceData.map((data) => data.get({ plain: true }));
+            console.log(rendered);
+            res.render('customers', {
+                rendered,
+                logged_in: req.session.loggedIn,
+            });
   } catch (err) {
     res.status(400).json(err);
   }

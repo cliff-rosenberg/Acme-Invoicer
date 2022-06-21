@@ -6,17 +6,21 @@ const { Inventory } = require('../../models');
 router.get('/', async (req, res) => {
   try {
       const inventoryData = await Inventory.findAll();
-          res.status(200).json(inventoryData);
-      
-  } catch (err) {
-      res.status(400).json(err);
-  }
- 
+      //res.status(200).json(inventoryData);
+      let rendered = inventoryData.map((data) => data.get({ plain: true }));
+      console.log(rendered);
+      res.render('inventory', {
+        rendered,
+        logged_in: req.session.loggedIn,
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(400).json(err);
+    }
 });
   
   // find products by their `id` value
   router.get('/:id', async (req, res) => {
-    console.log(req.params.id)
     try {
         const inventoryData = await Inventory.findByPk(req.params.id);
         if (!inventoryData) {

@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">Customer ID</th>
@@ -10,7 +10,8 @@
     </tr>
   </thead>
   <tbody>
-    {{#each customers as |customer| }}
+
+    {{#each rendered as |customer| }}
     <tr>
       <th scope="row">{{customer.customer_id}}</th>
       <td>{{customer.company_name}}</td>

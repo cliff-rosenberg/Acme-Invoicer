@@ -2,14 +2,14 @@ require('dotenv').config();
 
 const path = require('path');
 const express = require('express');
+const exphbs = require('express-handlebars');
 // Import express-session
 const session = require('express-session');
-const exphbs = require('express-handlebars');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-
+const sequelize = require('./config/connection');
 
 const routes = require('./controllers');
-const sequelize = require('./config/connection');
+
 //const helpers = require('./utils/helpers');
 
 // Sets up the Express App
@@ -41,7 +41,7 @@ app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 // sets 'static' routes for Express here
 app.use(express.static(path.join(__dirname, 'public')));
 
