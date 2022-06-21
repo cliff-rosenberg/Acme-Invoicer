@@ -1,0 +1,23 @@
+{{!-- This is the form for inputting new Inventory item --}}
+<div class="container w-50 p-3 my-3 border border-dark rounded-1">
+<form class="row g-3" method="POST" action="/api/inventory">
+    <div class="col-12">
+    <label for="item-name" class="form-label">Item Name</label>
+    <input type="text" class="form-control" name="item_name" placeholder="Item Name">
+    </div>
+    <div class="col-md-4">
+    <label for="inventory-quan" class="form-label">Inventory Quantity</label>
+    <input type="number" step="0.01" class="form-control" name="inventory_quan" value="1.0">
+    </div>
+    <div class="col-md-4">
+    <label for="item-cost" class="form-label">Item Cost</label>
+    <input type="number" step="0.01" class="form-control" name="cost" value="1.00">
+    </div>
+    <div class="col-md-4">
+    <label for="customer-price" class="form-label">Customer Price</label>
+    <input type="number" step="0.01" class="form-control" name="price" value="2.00">
+    </div>
+    <input class="col-md-1 btn btn-primary" type="submit" value="Save">
+    <input class="col-md-2 ms-2 btn btn-secondary" type="button" value="Clear Form" onClick="window.location.reload(true)">
+</form>
+</div>

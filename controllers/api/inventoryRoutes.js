@@ -37,8 +37,17 @@ router.get('/', async (req, res) => {
   // create a new product
   router.post('/', async (req, res) => {
     try {
-        const inventoryData = await Inventory.create(req.body);
+        if (!req.body.item_name) {
+            res.render('error', {
+                errMsg: 'Please enter an item name',
+                logged_in: req.session.loggedIn,
+                });
+        } else {
+        console.log(req.body);
+        const body = req.body
+        const inventoryData = await Inventory.create(body);
         res.status(200).json(inventoryData);
+        }
     } catch (err) {
         res.status(400).json(err);
     }
