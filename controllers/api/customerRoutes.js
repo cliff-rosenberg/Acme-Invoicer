@@ -7,8 +7,10 @@ router.get('/', async (req, res) => {
     try {
         const customerData = await Customer.findAll();
             //res.status(200).json(customerData);
+            let rendered = customerData.map((data) => data.get({ plain: true }));
+            console.log(rendered);
             res.render('customers', {
-                customerData,
+                rendered,
                 logged_in: req.session.loggedIn,
             });
     } catch (err) {
