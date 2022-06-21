@@ -8,10 +8,13 @@ const { Inventory, Invoice_details } = require('../../models');
 router.get('/', async (req, res) => {
   try {
     // this will return all Invoice data in table
-    const queryData = await Invoice.findAll();
+    const queryData = await Invoice.findAll({
+      include: Customer,
+    });
     //res.status(200).json(invoiceData);
+    console.log(queryData);
     let rendered = queryData.map((data) => data.get({ plain: true }));
-            console.log(rendered);
+    console.log(rendered);
             res.render('invoices', {
                 rendered,
                 logged_in: req.session.loggedIn,
