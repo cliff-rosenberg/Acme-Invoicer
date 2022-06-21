@@ -1,20 +1,26 @@
-<table class="table">
+{{!-- This shows all the existing Invoices and lets the user choose which one to email to the customer --}}
+<div class="ms-5">
+<table style="width: auto;" class="table table-bordered table-condensed">
   <thead>
     <tr>
       <th scope="col">Invoice ID</th>
+      <th scope="col" class="text-center">Customer Name</th>
       <th scope="col">Invoice Date</th>
+      <th scope="col">Click to Send Invoice</th>
     </tr>
   </thead>
   <tbody>
-    {{#each rendered as |Invoice| }}
+    {{#each invoices as |Invoice| }}
     <tr>
-      <th scope="row">{{Invoice.invoice_id}}</th>
+      <th scope="row" class="text-center">{{Invoice.invoice_id}}</th>
+      <td>{{Invoice.customer.company_name}}</td>
       <td>{{Invoice.invoice_date}}</td>
-      <td><button class="invoice-btn" data-invoiceid="{{Invoice.invoice_id}}">Generate Invoice</button></td>
+      <td class="text-center"><button class="invoice-btn" data-invoiceid="{{Invoice.invoice_id}}">Generate Invoice</button></td>
     </tr>
     {{/each}}
     </tbody>
 </table>
+</div>
 
 <script
   src="https://code.jquery.com/jquery-3.6.0.min.js"
