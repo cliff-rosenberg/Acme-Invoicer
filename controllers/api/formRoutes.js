@@ -43,7 +43,7 @@ router.get('/inventoryform', withAuth, async (req, res) => {
 
 router.get('/delinventoryform', withAuth, async (req, res) => {
     try {
-        res.render('inventoryCreate', {
+        res.render('inventoryDelete', {
             logged_in: req.session.loggedIn,
         });
     } catch (err) {
