@@ -55,7 +55,7 @@ router.post('/', async (req, res) => {
             customerData = await Customer.create(body);
             const rendered = body.map((data) => data.get({ plain: true }));
             res.render('customers', {
-                rendered,
+                rendered: body,
                 logged_in: req.session.loggedIn,
             })
         };
