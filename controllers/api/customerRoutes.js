@@ -20,24 +20,26 @@ router.get('/', async (req, res) => {
 });
   
 // find one customer by its `id` value
-router.get('/:id', async (req, res) => {
-console.log(req.params.id)
-try {
-    const customerData = await Customer.findByPk(req.params.id);
-    if (!customerData) {
-        res.status(404).json({ message: 'no customer with this id' });
-        return;
-    }
-    //res.status(200).json(customerData);
-    const rendered = customerData.map((data) => data.get({ plain: true }));
+router.post('/find', async (req, res) => {
+    console.log(req.body);
+    try {
+        const body = req.body;
+        const customerData = await Customer.findOne({
+            where: customer_id = body.dataval});
+        if (!customerData) {
+            res.status(404).json({ message: 'no customer with this id' });
+            return;
+        }
+        //res.status(200).json(customerData);
+        const rendered = customerData.map((data) => data.get({ plain: true }));
         console.log(rendered);
-        res.render('customers', {
-            rendered,
-            logged_in: req.session.loggedIn,
-        });
-} catch (err) {
-    res.status(500).json(err);
-}
+            res.render('customers', {
+                rendered,
+                logged_in: req.session.loggedIn,
+            });
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
   
 // create a new customer
