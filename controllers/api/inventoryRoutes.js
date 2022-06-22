@@ -86,7 +86,13 @@ router.get('/', async (req, res) => {
                 inventory_id: body.dataval
             }
         });
-        res.status(200).json({message: 'Deleted OK'});
+        const invUpdated = await Inventory.findAll();
+        const rendered = invUpdated.map((data) => data.get({ plain: true }));
+        res.render('inventory', {
+            rendered,
+            logged_in: req.session.loggedIn,
+            });
+        //res.status(200).json({message: 'Deleted OK'});
     } catch (err) {
         res.status(500).json(err);
     }

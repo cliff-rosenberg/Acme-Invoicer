@@ -1,0 +1,13 @@
+{{!-- This form is used to find a single Customer in the database --}}
+<form class="form-outline" method="POST" action="/api/customer/find">
+    <div class="container w-50 p-3 my-3 border border-dark rounded-1">
+        <h3>Show single Customer's data:</h3>
+        <select id="customer-selected" name="dataval" class="form-select" aria-label="Select a Customer">
+        <option selected>Select a customer show</option>
+        {{#each rendered as |customer| }}
+        <option value="{{customer.customer_id}}">{{customer.company_name}}</option>
+        {{/each}}
+        </select>
+        <input class="col-md-2 btn btn-warning" type="submit" value="Show">
+    </div>
+</form>
