@@ -53,17 +53,22 @@ router.post('/', async (req, res) => {
         } else {
             const body = req.body;
             customerData = await Customer.create(body);
-            const rendered = body.map((data) => data.get({ plain: true }));
+            // read back with new customer added
+            const customerNew = await Customer.findAll();
+            // serialize the Sequelize query return
+            const rendered = customerNew.map((data) => data.get({ plain: true }));
+            console.log(rendered);
             res.render('customers', {
                 rendered: body,
                 logged_in: req.session.loggedIn,
-            })
+            });
         };
     } catch (err) {
         res.status(400).json(err);
     }
 });
 
+// delete a customer
 router.post('/delete', async (req, res) => {
     console.log(req.body);
     try {
@@ -73,7 +78,11 @@ router.post('/delete', async (req, res) => {
                 customer_id: body.dataval
             }
         });
-        res.status(200).json({message: 'Deleted OK'});
+        console.log(body);
+        res.render('success', {
+            formData: body.dataval,
+            logged_in: req.session.loggedIn,
+        });
     } catch (err) {
         res.status(500).json(err);
     }
