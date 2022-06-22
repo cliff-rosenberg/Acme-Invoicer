@@ -77,4 +77,19 @@ router.get('/', async (req, res) => {
     
   });
 
+  router.post('/delete', async (req, res) => {
+    console.log(req.body);
+    try {
+        const body = req.body;
+        const inventoryData = await Inventory.destroy({
+            where: {
+                inventory_id: body.dataval
+            }
+        });
+        res.status(200).json({message: 'Deleted OK'});
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
   module.exports = router;

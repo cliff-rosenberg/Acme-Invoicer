@@ -1,0 +1,14 @@
+{{!-- This form is used to delete a Customer form the database --}}
+<form class="form-outline" method="POST" action="/api/inventory/delete">
+    <div class="container w-50 p-3 my-3 border border-dark rounded-1">
+        <h3>Delete an item from database:</h3>
+        <select id="inventory-selected" name="dataval" class="form-select" aria-label="Select a Product ">
+        <option selected>Select an item to remove</option>
+        {{#each rendered as |inventory| }}
+        <option value="{{inventory.inventory_id}}">{{inventory.item_name}}</option>
+        {{/each}}
+        </select>
+        <input class="col-md-2 btn btn-warning" type="submit" value="Delete">
+    <input class="col-md-2 ms-2 btn btn-secondary" type="button" value="Clear Form" onClick="window.location.reload(true)">
+    </div>
+</form>

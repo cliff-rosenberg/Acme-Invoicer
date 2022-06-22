@@ -59,7 +59,7 @@ router.post('/', async (req, res) => {
             const rendered = customerNew.map((data) => data.get({ plain: true }));
             console.log(rendered);
             res.render('customers', {
-                rendered,
+                rendered: body,
                 logged_in: req.session.loggedIn,
             });
         };

@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const withAuth = require('../../utils/auth');
-const { Customer } = require('../../models');
+const { Customer, Inventory } = require('../../models');
 
 // add Customer form
 router.get('/customerform', withAuth, async (req, res) => {
@@ -43,7 +43,11 @@ router.get('/inventoryform', withAuth, async (req, res) => {
 
 router.get('/delinventoryform', withAuth, async (req, res) => {
     try {
-        res.render('inventoryDelete', {
+        const inventoryData = await Inventory.findAll();
+        const rendered = inventoryData.map((data) => data.get({ plain: true }));
+        console.log(rendered);
+        res.render('inventoryDel', {
+            rendered,
             logged_in: req.session.loggedIn,
         });
     } catch (err) {
