@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { User, Inventory } = require('../models');
-const {Customer} = require('../models')
-const {Invoice} = require('../models')
+const { Customer } = require('../models')
+const { Invoice } = require('../models')
 const withAuth = require('../utils/auth');
 
 // this is the base route when the "homepage.handlebars" loads
