@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection');
-const Invoice = require('./invoice')
+const Invoice = require('./Invoice')
 
 // Model basics: https://sequelize.org/docs/v6/core-concepts/model-basics/
 class Customer extends Model {}
