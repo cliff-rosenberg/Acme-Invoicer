@@ -1,10 +1,14 @@
-const router = require('express').Router();
+//*
+//* These are the Express routes for Invoice functions
+//* all routes have the '/api/invoice' prefix in the URL
+//*
+// require databse models for Sequelize queries
 const { Invoice, Customer } = require('../../models');
 const { Inventory, Invoice_details } = require('../../models');
+// set up Express router
+const router = require('express').Router();
 
-
-
-//find all invoices
+//* Express route to find all Invoices in database
 router.get('/', async (req, res) => {
   try {
     // this will return all Invoice data in table
@@ -17,14 +21,17 @@ router.get('/', async (req, res) => {
     console.log(rendered);
             res.render('invoices', {
                 rendered,
+                tblCaption: 'All current Invoices',
                 logged_in: req.session.loggedIn,
             });
   } catch (err) {
+    // returns a '400 Bad Request' response
     res.status(400).json(err);
   }
 });
-  
-// find invoices by their `id` value
+
+// TODO: find all Invoices by their `id` value
+//* Express route to find all Invoices by their `id` value
 router.get('/:id', async (req, res) => {
   //console.log(req.params.id)
   try {
@@ -38,13 +45,17 @@ router.get('/:id', async (req, res) => {
         res.status(404).json({ message: 'no invoice found with this id' });
         return;
     }
+
     res.status(200).json(invoiceData);
   } catch (err) {
+    // returns a '500 Internal Server Error' response
     res.status(500).json(err);
   }
 });
 
-// find invoices by their `id` value and include all details
+// TODO:
+//* Express route to find all Invoices by their `id` value,
+//* and include all details as well
 router.get('/details/:id', async (req, res) => {
   //console.log(req.params.id)
   try {
@@ -58,16 +69,16 @@ router.get('/details/:id', async (req, res) => {
         res.status(404).json({ message: 'no invoice found with this id' });
         return;
     }
-    //res.status(200).json(invoiceData);
     let rendered = invoiceData.map((data) => data.get({ plain: true }));
     console.log(rendered);
-    
+    res.status(200).json(rendered);
   } catch (err) {
+    // returns a '500 Internal Server Error' response
     res.status(500).json(err);
   }
 });
   
-// create a new invoice
+// TODO: create a new Invoice in database
 router.post('/', async (req, res) => {
   try {
     // body must contain 'invoice_date' (in 'yyyy-mm-dd' format),
@@ -76,8 +87,10 @@ router.post('/', async (req, res) => {
     const invoiceData = await Invoice.create(req.body);
     res.status(200).json(invoiceData);
   } catch (err) {
+    // returns a '400 Bad Request' response
     res.status(400).json(err);
   }
 });
   
  module.exports = router;
+ 
