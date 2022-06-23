@@ -1,10 +1,17 @@
+//*
+//* These are the 'base' Express routes
+//* all of these load witn only the '/' URL
+//*
+// require all models for Sequelize
+const { Customer } = require('../models');
+const { Invoice, Inventory } = require('../models');
+const { User } = require('../models');
+// set up Express router
 const router = require('express').Router();
-const { User, Inventory } = require('../models');
-const { Customer } = require('../models')
-const { Invoice } = require('../models')
+// load 'auth.js' util
 const withAuth = require('../utils/auth');
 
-// this is the base route when the "homepage.handlebars" loads
+//* this is the base Express route when the "homepage.handlebars" loads
 router.get('/', withAuth, async (req, res) => {
     console.log('base route rendered');
     try {
@@ -12,12 +19,24 @@ router.get('/', withAuth, async (req, res) => {
             logged_in: req.session.loggedIn,
         });
     } catch (err) {
+        // returns a '500 Internal Server Error' response
         res.status(500).json(err);
     }
 });
 
-// this route is for emailing the invoice to customer
-// returns the Customer data
+//* Express route for user Login
+router.get('/login', (req, res) => {
+    // If the user is already logged in, redirect to the homepage
+    if (req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
+    // Otherwise, render the 'login' Handlebars template
+    res.render('login');
+});
+
+//* this Express route is for emailing the invoice to customer
+//* returns the Customer data
 router.get('/customers', withAuth, async (req, res) => {
     try {
         const customerData = await Customer.findAll({
@@ -29,12 +48,13 @@ router.get('/customers', withAuth, async (req, res) => {
             logged_in: req.session.loggedIn,
         });
     } catch (err) {
+        // returns a '500 Internal Server Error' response
         res.status(500).json(err);
     }
 });
 
-// this route is for emailing the invoice to customer
-// returns the Invoice data
+//* this Express route is for emailing the invoice to customer
+//* returns the Invoice data
 router.get('/invoice', withAuth, async (req, res) => {
     try {
         const invoiceData = await Invoice.findAll({
@@ -48,12 +68,13 @@ router.get('/invoice', withAuth, async (req, res) => {
             logged_in: req.session.loggedIn,
         });
     } catch (err) {
+        // returns a '500 Internal Server Error' response
         res.status(500).json(err);
     }
 });
 
-// this route is for emailing the invoice to customer
-// returns the Inventory data for the invoice
+//* this Express route is for emailing the invoice to customer
+//* returns the Inventory data for the invoice
 router.get('/inventory', withAuth, async (req, res) => {
     try {
         const invoiceData = await Inventory.findAll({
@@ -62,22 +83,13 @@ router.get('/inventory', withAuth, async (req, res) => {
         const inventory = invoiceData.map((project) => project.get({ plain: true }));
         res.render('inventory', {
             inventory,
+            tblCaption: ' ',
             logged_in: req.session.loggedIn,
         });
     } catch (err) {
+        // returns a '500 Internal Server Error' response
         res.status(500).json(err);
     }
 });
-
-// Login route
-router.get('/login', (req, res) => {
-    // If the user is already logged in, redirect to the homepage
-    if (req.session.loggedIn) {
-      res.redirect('/');
-      return;
-    }
-    // Otherwise, render the 'login' template
-    res.render('login');
-  });
 
 module.exports = router;

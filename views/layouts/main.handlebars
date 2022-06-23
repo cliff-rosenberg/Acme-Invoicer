@@ -6,89 +6,92 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Acme-Invoicer v1.0</title>
-  {{!-- <link rel="stylesheet" href="/css/jass.css"> --}}
+  <!-- Loads Bootstrap CSS here -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-  
 </head>
-<nav class="navbar navbar-expand-lg bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Acme Invoicer</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Customers
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="/api/customer">Show All Customers</a></li>
-            <li><a class="dropdown-item" href="/api/forms/findcustform">Display One Customer</a></li>
-            <li><a class="dropdown-item" href="/api/forms/customerform">Add a Customer</a></li>
-            <li><a class="dropdown-item" href="/api/forms/delcustomerform">Delete a Customer</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Inventory
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="/api/inventory">Show all Inventory</a></li>
-            <li><a class="dropdown-item" href="#">Inventory by ID</a></li>
-            <li><a class="dropdown-item" href="/api/forms/inventoryform">Add Inventory Item</a></li>
-            <li><a class="dropdown-item" href="/api/forms/delinventoryform">Delete Inventory Item</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Invoices
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="/api/invoice">Show all Invoices</a></li>
-            <li><a class="dropdown-item" href="#">Invoice by ID</a></li>
-            <li><a class="dropdown-item" href="#">Add New Invoice</a></li>
-            <li><a class="dropdown-item" href="#">Delete Invoice</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="/invoice">Send Invoice to Customer</a></li>
-          </ul>
-        </li>
-      </ul>
+<body>
+  {{!-- Main Navbar menu here --}}
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Acme Invoicer</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Customers
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="/api/customer">Show All Customers</a></li>
+              <li><a class="dropdown-item" href="/api/forms/findcustform">Show One Customer</a></li>
+              <li><a class="dropdown-item" href="/api/forms/customerform">Add a Customer</a></li>
+              <li><a class="dropdown-item" href="/api/forms/delcustomerform">Delete a Customer</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Inventory
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="/api/inventory">Show all Inventory</a></li>
+              <li><a class="dropdown-item" href="/api/forms/findinvform">Show One Inventory Item</a></li>
+              <li><a class="dropdown-item" href="/api/forms/inventoryform">Add Inventory Item</a></li>
+              <li><a class="dropdown-item" href="/api/forms/delinventoryform">Delete an Inventory Item</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Invoices
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="/api/invoice">Show All Invoices</a></li>
+              <li><a class="dropdown-item disabled" href="#">Show One Invoice</a></li>
+              <li><a class="dropdown-item disabled" href="#">Add a New Invoice</a></li>
+              <li><a class="dropdown-item disabled" href="#">Delete an Invoice</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/invoice">Email Invoice to Customer</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
-  <div class="page-header">
-  <div class="flex-column justify-space-around">
-    <header class="display-flex justify-space-between align-center p-2">
-      <nav>
-        <!-- Conditionally render login or logout links -->
-        {{#if logged_in}}
-        <div class="ms-2">
-          <button type="button" class="btn btn-outline-info btn-sm" id="logout">logout</button>
-        </div>
-        {{else}}
-        <a href="/login">click here to login</a>
-        {{/if}}
-      </nav>
-    </header>
-    <main class="container-fluid mt-1 ms-1">
-      <!-- Render the sub layout -->
-      {{{ body }}}
-    </main>
-  </div>
-  </div>
-  <!-- Render script for logged in users only -->
-  {{#if logged_in}}
-  <script src="/js/logout.js"></script>
-  {{/if}}
-  {{!-- <script src="/js/mainMenu.js"></script> --}}
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" 
-  integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" 
-integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+  </nav>
+  {{!-- end Main Navbar menu here --}}
+    <div class="page-header">
+    <div class="flex-column justify-space-around">
+      <header class="display-flex justify-space-between align-center p-2">
+        <nav>
+          <!-- Conditionally render login or logout links -->
+          {{#if logged_in}}
+          <div class="ms-2">
+            <button type="button" class="btn btn-outline-info btn-sm" id="logout">logout</button>
+          </div>
+          {{else}}
+          <a href="/login">click here to login</a>
+          {{/if}}
+        </nav>
+      </header>
+      {{!-- main body HTML is inserted here by Handlebars --}}
+      <main class="container-fluid mt-1 ms-1">
+        <!-- Render the sub layout -->
+        {{{ body }}}
+      </main>
+    </div>
+    </div>
+    <!-- Render script for logged in users only -->
+    {{#if logged_in}}
+    <script src="/js/logout.js"></script>
+    {{/if}}
+    <!-- Loads Popper and Bootstrap Javascript functions here -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" 
+    integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" 
+    integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
 </body>
 </html>

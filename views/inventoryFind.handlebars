@@ -1,0 +1,13 @@
+{{!-- This form is used to select a single Inventory item to display from the database --}}
+<form class="form-outline" method="POST" action="/api/inventory/find">
+    <div class="container w-50 p-3 my-3 border border-dark rounded-1">
+        <h3>Show Single Inventory Item's Data:</h3>
+        <select id="inventory-selected" name="dataval" class="form-select" aria-label="Select a Customer">
+        <option selected>Select Inventory Item to Show</option>
+        {{#each rendered as |Inventory| }}
+        <option value="{{Inventory.inventory_id}}">{{Inventory.item_name}}</option>
+        {{/each}}
+        </select>
+        <input class="col-md-2 mt-2 btn btn-warning" type="submit" value="Show">
+    </div>
+</form>

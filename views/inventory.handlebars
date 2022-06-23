@@ -1,26 +1,26 @@
-{{!-- This displays all Inventory items in the database in a formatted table --}}
+{{!-- This displays Inventory items in the database in a formatted table --}}
 <div class="ms-5">
-<table style="width: auto;" class="table table-bordered table-striped table-condensed">
-  <caption>All Inventory items</caption>
-  <thead>
-    <tr>
-      <th scope="col">Inventory ID</th>
-      <th scope="col" class="text-center">Item Name</th>
-      <th scope="col">Inventory QTY</th>
-      <th scope="col" class="text-center">Cost</th>
-      <th scope="col" class="text-center">Price</th>
-    </tr>
-  </thead>
-  <tbody class="table-group-divider">
-    {{#each rendered as |Inventory| }}
-    <tr>
-      <th scope="row" class="text-center">{{Inventory.inventory_id}}</th>
-      <td>{{Inventory.item_name}}</td>
-      <td class="text-center">{{Inventory.inventory_quan}}</td>
-      <td>${{Inventory.cost}}</td>
-      <td>${{Inventory.price}}</td>
-    </tr>
-    {{/each}}
-    </tbody>
-</table>
+  <table style="width: auto;" class="table table-bordered table-striped table-condensed">
+    <caption>{{ tblCaption }}</caption>
+    <thead>
+      <tr>
+        <th scope="col">Inventory ID</th>
+        <th scope="col" class="text-center">Item Name</th>
+        <th scope="col">Inventory QTY</th>
+        <th scope="col" class="text-center">Cost</th>
+        <th scope="col" class="text-center">Price</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      {{#each rendered as |Inventory| }}
+      <tr>
+        <th scope="row" class="text-center">{{Inventory.inventory_id}}</th>
+        <td>{{Inventory.item_name}}</td>
+        <td class="text-center">{{Inventory.inventory_quan}}</td>
+        <td>${{Inventory.cost}}</td>
+        <td>${{Inventory.price}}</td>
+      </tr>
+      {{/each}}
+      </tbody>
+  </table>
 </div>
