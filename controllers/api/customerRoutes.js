@@ -1,12 +1,13 @@
 //*
 //* These are the Express routes for Customer functions
+//* all routes have the '/api/customer' prefix in the URL
 //*
 // require Customer model
 const { Customer } = require('../../models');
 // set up Express router
 const router = require('express').Router();
 
-//* find all Customers
+//* Express route to find all Customers
 router.get('/', async (req, res) => {
     try {
         // retrieve all Customers in database
@@ -21,11 +22,12 @@ router.get('/', async (req, res) => {
                 logged_in: req.session.loggedIn,
             });
     } catch (err) {
+        // returns a Client error response
         res.status(400).json(err);
     }
 });
-  
-//* find one customer by the `customer_id` value
+
+//* Express route to find one Customer by the `customer_id` value
 router.post('/find', async (req, res) => {
     console.log(req.body);
     try {
@@ -50,11 +52,12 @@ router.post('/find', async (req, res) => {
                 logged_in: req.session.loggedIn,
             });
     } catch (err) {
+        // returns a Server error response
         res.status(500).json(err);
     }
 });
   
-//* create a new Customer in database
+//* Express route to create a new Customer in database
 router.post('/', async (req, res) => {
     //console.log(req.body)
     try {
@@ -81,11 +84,12 @@ router.post('/', async (req, res) => {
             });
         };
     } catch (err) {
+        // returns a Client error response
         res.status(400).json(err);
     }
 });
 
-//* delete a single Customer
+//* Express route to delete a single Customer from database
 router.post('/delete', async (req, res) => {
     console.log(req.body);
     try {
@@ -103,22 +107,24 @@ router.post('/delete', async (req, res) => {
             logged_in: req.session.loggedIn,
         });
     } catch (err) {
+        // returns a Server error response
         res.status(500).json(err);
     }
 });
 
-// TODO: update a Customer by its `id` value
+// TODO: update a Customer by `customer_id` value
 router.put('/:id', async (req, res) => {
     try {
         const customerData = await Customer.update(req.body, {
             where: req.params.id
         });
-        if (!customerData[0]) {
+        if (!customerData) {
             res.status(404).json({ message: 'no customer with this id' });
             return;
         }
         res.status(200).json(customerData);
     } catch (err) {
+        // returns a Server error response
         res.status(500).json(err);
     }
 });
