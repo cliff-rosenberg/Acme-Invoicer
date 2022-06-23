@@ -1,4 +1,4 @@
-{{!-- This form is used to find a single Customer in the database --}}
+{{!-- This form is used to select a single Customer from the database --}}
 <form class="form-outline" method="POST" action="/api/customer/find">
     <div class="container w-50 p-3 my-3 border border-dark rounded-1">
         <h3>Show single Customer's data:</h3>
@@ -8,6 +8,6 @@
         <option value="{{customer.customer_id}}">{{customer.company_name}}</option>
         {{/each}}
         </select>
-        <input class="col-md-2 btn btn-warning" type="submit" value="Show">
+        <input class="col-md-2 mt-2 btn btn-warning" type="submit" value="Show">
     </div>
 </form>

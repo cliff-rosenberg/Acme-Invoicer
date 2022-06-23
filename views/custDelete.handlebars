@@ -1,4 +1,4 @@
-{{!-- This form is used to delete a Customer form the database --}}
+{{!-- This form is used to select a single Customer to remove from the database --}}
 <form class="form-outline" method="POST" action="/api/customer/delete">
     <div class="container w-50 p-3 my-3 border border-dark rounded-1">
         <h3>Delete a Customer from database:</h3>
@@ -8,7 +8,6 @@
         <option value="{{customer.customer_id}}">{{customer.company_name}}</option>
         {{/each}}
         </select>
-        <input class="col-md-2 btn btn-warning" type="submit" value="Delete">
-    <input class="col-md-2 ms-2 btn btn-secondary" type="button" value="Clear Form" onClick="window.location.reload(true)">
+        <input class="col-md-2 mt-2 btn btn-warning" type="submit" value="Delete">
     </div>
 </form>
