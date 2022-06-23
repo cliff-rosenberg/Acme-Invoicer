@@ -1,16 +1,22 @@
+//*
+//* These are the Express routes for Customer functions
+//*
+// require Customer model
 const { Customer } = require('../../models');
-
+// set up Express router
 const router = require('express').Router();
 
-// find all customers
+//* find all Customers
 router.get('/', async (req, res) => {
     try {
+        // retrieve all Customers in database
         const customerData = await Customer.findAll();
-            //res.status(200).json(customerData);
-            // serialize the Sequelize query return
+            // format the returned JSON
             const rendered = customerData.map((data) => data.get({ plain: true }));
-            console.log(rendered);
+            //console.log(rendered);
+            // render using Handlebars
             res.render('customers', {
+                tblCaption: 'All current Customers',
                 rendered,
                 logged_in: req.session.loggedIn,
             });
@@ -19,21 +25,27 @@ router.get('/', async (req, res) => {
     }
 });
   
-// find one customer by its `id` value
+//* find one customer by the `customer_id` value
 router.post('/find', async (req, res) => {
     console.log(req.body);
     try {
         const body = req.body;
-        const customerData = await Customer.findOne({
-            where: customer_id = body.dataval});
+        // search the database for relevant Customer data
+        const customerData = await Customer.findAll({
+            where: {
+                customer_id: body.dataval
+            }
+        });
         if (!customerData) {
             res.status(404).json({ message: 'no customer with this id' });
             return;
         }
-        //res.status(200).json(customerData);
+        // format the returned JSON
         const rendered = customerData.map((data) => data.get({ plain: true }));
-        console.log(rendered);
+        //console.log(rendered);
+            // render using Handlebars
             res.render('customers', {
+                tblCaption: 'Single Customer Data',
                 rendered,
                 logged_in: req.session.loggedIn,
             });
@@ -42,9 +54,9 @@ router.post('/find', async (req, res) => {
     }
 });
   
-// create a new customer
+//* create a new Customer in database
 router.post('/', async (req, res) => {
-    console.log(req.body)
+    //console.log(req.body)
     try {
         if (!req.body.company_name) {
             res.render('error', {
@@ -54,14 +66,17 @@ router.post('/', async (req, res) => {
                 });
         } else {
             const body = req.body;
+            // create the new Customer in database
             customerData = await Customer.create(body);
-            // read back with new customer added
+            // read back Customer table with new Customer data added
             const customerNew = await Customer.findAll();
             // serialize the Sequelize query return
             const rendered = customerNew.map((data) => data.get({ plain: true }));
             console.log(rendered);
+            // render using Handlebars
             res.render('customers', {
-                rendered: body,
+                tblCaption: 'All current Customers',
+                rendered,
                 logged_in: req.session.loggedIn,
             });
         };
@@ -70,17 +85,19 @@ router.post('/', async (req, res) => {
     }
 });
 
-// delete a customer
+//* delete a single Customer
 router.post('/delete', async (req, res) => {
     console.log(req.body);
     try {
         const body = req.body;
+        // remove single Customer's data from database
         const customerData = await Customer.destroy({
             where: {
                 customer_id: body.dataval
             }
         });
-        console.log(body);
+        //console.log(body);
+        // render using Handlebars
         res.render('success', {
             formData: body.dataval,
             logged_in: req.session.loggedIn,
@@ -90,7 +107,7 @@ router.post('/delete', async (req, res) => {
     }
 });
 
-// update a customer by its `id` value
+// TODO: update a Customer by its `id` value
 router.put('/:id', async (req, res) => {
     try {
         const customerData = await Customer.update(req.body, {
