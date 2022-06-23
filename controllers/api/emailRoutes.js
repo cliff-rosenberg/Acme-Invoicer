@@ -1,13 +1,19 @@
+//*
+//* this is the Express route that sends Invoices to Customer via email
+//*
+// set up Express router
 const router = require('express').Router();
+// require database models
 const { Invoice, Customer } = require('../../models');
 const sequelize = require('../../config/connection');
+// require Nodemailer
 const nodemailer = require("nodemailer");
+// global variable setup
 let transporter;
 
 (async () => {
     // this line can be used to generate a fresh Ethereal email account
     // const testAccount = await nodemailer.createTestAccount();
-
     // console.log(testAccount);
 
     transporter = nodemailer.createTransport({
@@ -20,7 +26,7 @@ let transporter;
         },
     });
 })();
-
+// this creates a table for the email body in HTML
 function createInvoiceEmailTable(invoiceLineItems) {
     let itemRows = '';
     // let quantity = Number(invoiceRow.quantity);
@@ -52,14 +58,16 @@ function createInvoiceEmailTable(invoiceLineItems) {
     </table>`;
 }
 
+//* this is the Express route for generating and emailing Invoices to Customers
 router.post("/invoice/:invoiceID", async (req, res) => {
     const invoiceID = parseInt(req.params.invoiceID);
+    // look up Invoice by Primark Key value
     const invoice = await Invoice.findByPk(invoiceID);
-
+    // if no matching Invoice is found then return a 404 error
     if(!invoice) {
         return res.sendStatus(404);
     }
-
+    // perform the database query to return Invoice data
     const invoiceLineItems = await sequelize.query(`SELECT * FROM invoice
                     INNER JOIN invoice_details
                     ON invoice.invoice_id = invoice_details.invoice_id
