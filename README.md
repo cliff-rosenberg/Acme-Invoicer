@@ -31,7 +31,9 @@ Javascript, Mysql, Html, Apis
 
 ## Screenshots
 
-TODO
+![acme-homepage](./assets/acme-screenshot1.png)
+
+![acme-customerpage](./assets/acme-screenshot2.png)
 
 ## Usage
 When running the code, you should be able to send invoices to customers
