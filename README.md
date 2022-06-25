@@ -27,7 +27,9 @@ This is a simple Business Management system that allows the user to enter custom
      
 ## Installation
 
-Javascript, Mysql, Html, Apis
+Project is hosted on Heroku at: [https://pacific-beach-42504.herokuapp.com/](https://pacific-beach-42504.herokuapp.com/)
+
+Can also be installed locally by copying directory structure as-is, then doing a `npm install` in the base directory to install necessary dependancies. Application database is MySql, and the database container can be created by navigating to the `/db `directory and then using the MySQL command line utility and the `SOURCE` command to create it. Data tables can be seeded into the container after this my navigating to the `/seeds `directory and using the command `node index.js` to create them.
 
 ## Screenshots
 
@@ -36,16 +38,28 @@ Javascript, Mysql, Html, Apis
 ![acme-customerpage](./assets/acme-screenshot2.png)
 
 ## Usage
-When running the code, you should be able to send invoices to customers
-Customers should be able to route to their invoices
-Invoices should send to customers email for them to pay their bill
-Customers will also be able to manage what they order and keep track of their inventory.
-The drop down menu will give you the option to look at your invoice, create a new order, as well list the items we have on stock.
 
+Running `node server.js` in the base directory after dependancies have been installed launches the application. Opening a web browser and navigating to the URL `http://http://localhost:3001/` will show the user login prompts, and if there are no accounts available one can be created.
+
+The drop down menus in the application will give you the option to work with 'Customer' infomation, work with Inventory information, or work with Invoice information. 
 
 ## Credits
 
-Cliff Rosenburg, Daniel Leake, Matt Gonzales, Leo Morales
+This application was created by the team of Cliff Rosenberg, Daniel Leake, Leo Morales, Matt Gonzales using the following technologies and libraries:
+
+[Express](https://expressjs.com/)
+
+[MySQL v8.0](https://www.mysql.com/)
+
+[Sequelize v6](https://sequelize.org/)
+
+[Nodemailer](https://nodemailer.com/about/)
+
+[connect-session-sequelize](https://www.npmjs.com/package/connect-session-sequelize)
+
+[bcrypt](https://www.npmjs.com/package/bcrypt)
+
+[dotenv](https://www.npmjs.com/package/dotenv)
 
 ## Contributing
 
@@ -57,12 +71,10 @@ Cliff Rosenburg, Daniel Leake, Matt Gonzales, Leo Morales
 
 ## Additional Info
 
-Customer Functions:
--Adding customers to database
--Looking up customers from database
- 	Database for Customers:
-	-Business Name
-	-Contact Name
-	-Address
-	-Phone Number
-	-E-Mail
+Leo Morales Github - [https://github.com/leomorales1](https://github.com/leomorales1)
+
+Daniel Leake Github - [https://github.com/rensyphon](https://github.com/rensyphon)
+
+Matthew Gonzales Github - [https://github.com/mattyjtx](https://github.com/mattyjtx)
+
+Cliff Rosenberg Github - [https://github.com/cliff-rosenberg](https://github.com/cliff-rosenberg)
