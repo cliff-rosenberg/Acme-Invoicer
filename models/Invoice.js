@@ -1,7 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection');
-const Customer = require('./Customer');
 
 class Invoice extends Model {}
 
@@ -15,7 +14,8 @@ Invoice.init(
       unique: true
     },
     invoice_date: {
-      type: DataTypes.DATEONLY
+      type: DataTypes.DATEONLY,
+      allowNull: false
     }
     }, 
     { 
@@ -23,7 +23,7 @@ Invoice.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'invoice' 
+    modelName: 'Invoice' 
     }
   );
 
