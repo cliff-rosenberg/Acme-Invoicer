@@ -1,7 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection');
-const Invoice = require('./Invoice')
 
 // Model basics: https://sequelize.org/docs/v6/core-concepts/model-basics/
 class Customer extends Model {}
@@ -32,7 +31,8 @@ Customer.init(
       allowNull: false
     },
     email_address: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: false
     }
   },
   {
@@ -40,7 +40,7 @@ Customer.init(
   timestamps: false,
   freezeTableName: true,
   underscored: true,
-  modelName: 'customer',
+  modelName: 'Customer',
   }
 );
 

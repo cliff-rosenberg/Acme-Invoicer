@@ -1,7 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection');
-const Invoice = require('./Invoice');
 
 class Invoice_details extends Model {}
 
@@ -15,10 +14,12 @@ Invoice_details.init(
         unique: true
     },
     quantity: {
-        type: DataTypes.DECIMAL(10,2)
+        type: DataTypes.DECIMAL(10,2),
+        allowNull: false
     },
     extended_price: {
-        type: DataTypes.DECIMAL(10,2)
+        type: DataTypes.DECIMAL(10,2),
+        allowNull: false
     }
     },
     {
@@ -26,7 +27,7 @@ Invoice_details.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'invoice_details'
+    modelName: 'Invoice_details'
     }
 );
 
