@@ -10,7 +10,8 @@ const Invoice_details = require('./Invoice_details');
 //Customer has many Invoices
 // but only one Customer per Invoice
 Invoice.belongsTo(Customer, {
-  foreignKey: 'customer_id'
+  foreignKey: 'customer_id',
+  onDelete: 'CASCADE'
 });
 
 // Customer has many Invoices
@@ -20,11 +21,13 @@ Customer.hasMany(Invoice, {
 
 // Invoice has many line items
 Invoice.hasMany(Invoice_details, {
-  foreignKey: 'invoice_id'
+  foreignKey: 'invoice_id',
+  onDelete: 'CASCADE'
 });
 
 Inventory.hasMany(Invoice_details, {
-  foreignKey: 'inventory_id'
+  foreignKey: 'inventory_id',
+  onDelete: 'CASCADE'
 });
 
 module.exports = {
