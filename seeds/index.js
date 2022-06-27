@@ -1,10 +1,9 @@
 require('dotenv').config({ path: __dirname + `/../.env` });
+const sequelize = require('../config/connection');
 
 const seedCustomer = require('./customer-seed');
 const seedInventory = require('./inventory-seed');
 const seedInvoice = require('./invoice-seed');
-
-const sequelize = require('../config/connection');
 const seedInvoice_details = require('./invoice_detail-seed');
 
 const seedAll = async () => {
