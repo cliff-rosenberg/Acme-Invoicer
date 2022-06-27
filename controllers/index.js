@@ -1,3 +1,7 @@
+// The express.Router class creates modular, mountable route handlers
+// A Router instance is a complete middleware and routing system;
+// for this reason, it is often referred to as a “mini-app”
+// see https://expressjs.com/en/guide/routing.html for more info
 const router = require('express').Router();
 
 // set up routes here
