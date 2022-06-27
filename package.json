@@ -1,7 +1,7 @@
 {
   "name": "acme-invoicer",
   "version": "1.0.0",
-  "description": "![/assets/logo-transparent.png](assets/logo-transparent.png)",
+  "description": "A simple Business Management system that allows the user to enter customer data, manage item inventory, and create invoices and send them to the customers for billing",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,7 +13,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/cliff-rosenberg/Acme-Invoicer/issues"
   },
