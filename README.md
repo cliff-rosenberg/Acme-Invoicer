@@ -27,7 +27,7 @@ This is a simple Business Management system that allows the user to enter custom
      
 ## Installation
 
-Project is hosted on Heroku at: [https://pacific-beach-42504.herokuapp.com/](https://pacific-beach-42504.herokuapp.com/)
+NOTE: As of November 2022, Heroku has no "free" accounts, so the demo application has been taken offline until another suitable host can be found.
 
 Can also be installed locally by copying directory structure as-is, then doing a `npm install` in the base directory to install necessary dependancies. Application database is MySql, and the database container can be created by navigating to the `/db `directory and then using the MySQL command line utility and the `SOURCE` command to create it. Data tables can be seeded into the container after this my navigating to the `/seeds `directory and using the command `node index.js` to create them.
 
